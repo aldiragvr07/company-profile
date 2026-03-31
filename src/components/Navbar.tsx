@@ -17,23 +17,26 @@ export default function Navbar() {
     { label: "Produk", path: "/produk", targetId: "produk" },
     { label: "Mitra", path: "/mitra", targetId: "mitra" },
     { label: "Artikel", path: "/artikel", targetId: "artikel" },
+    { label: "Kontak", path: "/kontak", targetId: "kontak" },
   ];
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="flex justify-between items-center px-6 md:px-20 w-full bg-white/90 backdrop-blur-md box-border h-[100px] border-b border-slate-100 sticky top-0 z-50 transition-all font-sans"
     >
-      
       {/* 1. Brand Logo */}
-      <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition group">
-        <Image 
-          src="/log1r.png" 
-          alt="Logo KOPJASFAS" 
-          width={52} 
-          height={52} 
+      <Link
+        href="/"
+        className="flex items-center gap-4 hover:opacity-80 transition group"
+      >
+        <Image
+          src="/log1r.png"
+          alt="Logo KOPJASFAS"
+          width={52}
+          height={52}
           className="h-[52px] w-auto object-contain group-hover:rotate-6 transition-transform"
         />
         <span className="font-heading font-extrabold text-2xl tracking-tight text-brand-navy">
@@ -47,11 +50,13 @@ export default function Navbar() {
           // Jika di home, link ke #id. Jika tidak, link ke /#id atau ke halaman spesifik
           // User ingin landing page panjang, jadi kita prioritaskan scroll ke section di home
           const href = isHome ? `#${item.targetId}` : `/#${item.targetId}`;
-          const isActive = isHome ? (item.targetId === "beranda" && pathname === "/") : pathname === item.path;
+          const isActive = isHome
+            ? item.targetId === "beranda" && pathname === "/"
+            : pathname === item.path;
 
           return (
-            <Link 
-              key={item.targetId} 
+            <Link
+              key={item.targetId}
               href={href}
               className={`font-sans font-medium text-base transition-colors hover:text-brand-orange ${
                 isActive ? "text-brand-orange font-semibold" : "text-brand-gray"
@@ -64,11 +69,13 @@ export default function Navbar() {
       </div>
 
       {/* 3. CTA Button */}
-      <Link 
+      <Link
         href={isHome ? "#kontak" : "/#kontak"}
         className="hidden md:flex bg-brand-orange px-8 py-4 rounded-full items-center justify-center shadow-[0_8px_24px_rgba(249,164,26,0.2)] hover:-translate-y-1 transition-all active:scale-95"
       >
-        <span className="font-sans font-semibold text-base text-white">Hubungi Kami</span>
+        <span className="font-sans font-semibold text-base text-white">
+          Hubungi Kami
+        </span>
       </Link>
 
       {/* Mobile Menu Button (Hamburger) */}
